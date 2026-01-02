@@ -107,6 +107,7 @@ nav a:hover {
 
 .dropdown-item {
     display: block;
+    width: 80% !important;
     color: #d4af37;
     padding: 12px 10px 12px 5px;
     text-decoration: none;

@@ -28,10 +28,10 @@ function loadPage(page) {
     console.log('Loading page:', page, 'isLoggedIn:', isLoggedIn);
     
     // Páginas públicas (não requerem autenticação)
-    const publicPages = ['login', 'register', 'forgot-password', 'home', 'about', 'contact', 'texts', 'text-view', '404'];
+    const publicPages = ['login', 'register', 'forgot-password', 'home', 'about', 'contact', 'texts', 'text-view', 'concept-map', '404'];
     
     // Páginas que requerem autenticação
-    const authRequiredPages = ['new-text', 'add-question'];
+    const authRequiredPages = ['new-text', 'add-question', 'my-account', 'my-texts', 'edit-text'];
     
     // Se não está logado e tenta acessar página restrita, redireciona para login
     if (!publicPages.includes(page) && !isLoggedIn) {
