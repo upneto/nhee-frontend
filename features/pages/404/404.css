@@ -1,23 +1,44 @@
+/* 404 Error Page - Acervo Filosófico */
 .error-container {
     padding: 100px 20px;
-    min-height: 500px;
+    min-height: 600px;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .error-code {
-    font-size: 120px;
+    font-size: 160px;
     font-weight: bold;
-    color: #dc3545;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    color: #d4af37;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 4px;
 }
 
 .error-container h1 {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 36px;
+    color: #e8e8e8;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .error-container .lead {
-    font-size: 18px;
-    color: #666;
+    font-size: 20px;
+    color: #999;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.error-container .btn {
+    margin-top: 20px;
 }

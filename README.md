@@ -1,14 +1,27 @@
-# Frontend SPA Project
+# Filosofia Colaborativa - Plataforma de Debates
 
-Este é um projeto de aplicação web de página única (SPA) desenvolvida com tecnologias puras: HTML, CSS e JavaScript. Utiliza Bootstrap para estilização e Nginx como servidor local.
+Plataforma colaborativa de textos e debates filosóficos onde usuários compartilham reflexões, inteligência artificial extrai questões relevantes, e a comunidade participa de discussões profundas. Desenvolvido como SPA (Single Page Application) com design sóbrio, tipografia legível e foco na experiência de leitura e escrita prolongada.
 
 ## Tecnologias Utilizadas
 
-- **HTML**: Estrutura das páginas.
-- **CSS**: Estilização personalizada.
-- **JavaScript**: Lógica da aplicação, incluindo roteamento SPA.
-- **Bootstrap**: Framework CSS para componentes responsivos e utilitários.
-- **Nginx**: Servidor web para hospedar a aplicação localmente.
+- **HTML5**: Estrutura semântica das páginas
+- **CSS3**: Design sóbrio com paleta escura e gradientes elegantes
+- **JavaScript**: Lógica da aplicação e roteamento SPA
+- **Bootstrap 5**: Framework CSS responsivo
+- **Tipografia Serif**: 
+  - **Crimson Text**: Fonte serifada para corpo de texto, otimizada para leitura prolongada
+  - **Cinzel**: Fonte serifada clássica para títulos e cabeçalhos
+- **Nginx**: Servidor web de alta performance
+
+## Design e Identidade Visual
+
+O sistema foi projetado especificamente para um acervo filosófico, com:
+
+- **Paleta de Cores Sóbria**: Tons de preto (#0d0d0d, #1a1a1a) e cinza escuro (#2d2d2d)
+- **Acentos Dourados**: Detalhes em dourado (#d4af37) e bronze (#b8935e) para elegância
+- **Alta Legibilidade**: Fontes serif com tamanho generoso (18px) e espaçamento adequado (line-height: 1.8)
+- **Contraste Otimizado**: Texto claro sobre fundo escuro para reduzir fadiga visual
+- **Animações Suaves**: Transições elegantes que não distraem da leitura
 
 ## Estrutura do Projeto
 
@@ -20,27 +33,51 @@ Este é um projeto de aplicação web de página única (SPA) desenvolvida com t
 ├── resources/
 │   ├── main.css               # Estilos globais
 │   ├── main.js                # Lógica principal e roteamento SPA
-│   ├── bootstrap/             # Arquivos do Bootstrap
-│   │   ├── bootstrap.min.css
-│   │   └── bootstrap.bundle.min.js
-│   └── nginx/                 # Servidor Nginx
-│       └── nginx-1.25.3/
-│           ├── nginx.exe
-│           └── conf/
-│               └── nginx.conf # Configuração do Nginx
+│   └── bootstrap/             # Arquivos do Bootstrap
+│       ├── bootstrap.min.css
+│       └── bootstrap.bundle.min.js
+├── server/
+│   ├── nginx/                 # Servidor Nginx
+│   │   └── nginx-1.25.3/
+│   │       ├── nginx.exe
+│   │       └── conf/
+│   │           └── nginx.conf # Configuração do Nginx
+│   └── docker/                # Configuração Docker
+│       ├── Dockerfile
+│       ├── docker-compose.yml
+│       ├── start.sh
+│       └── stop.sh
 └── features/                  # Funcionalidades/telas da aplicação
-    ├── home/
-    │   ├── home.html
-    │   ├── home.css
-    │   └── home.js
-    ├── about/
-    │   ├── about.html
-    │   ├── about.css
-    │   └── about.js
-    └── contact/
-        ├── contact.html
-        ├── contact.css
-        └── contact.js
+    ├── authentication/
+    │   ├── login/
+    │   │   ├── login.html
+    │   │   ├── login.css
+    │   │   └── login.js
+    │   ├── register/
+    │   │   ├── register.html
+    │   │   ├── register.css
+    │   │   └── register.js
+    │   └── forgot-password/
+    │       ├── forgot-password.html
+    │       ├── forgot-password.css
+    │       └── forgot-password.js
+    └── pages/
+        ├── home/
+        │   ├── home.html
+        │   ├── home.css
+        │   └── home.js
+        ├── about/
+        │   ├── about.html
+        │   ├── about.css
+        │   └── about.js
+        ├── contact/
+        │   ├── contact.html
+        │   ├── contact.css
+        │   └── contact.js
+        └── 404/
+            ├── 404.html
+            ├── 404.css
+            └── 404.js
 ```
 
 ## Como Executar
@@ -87,9 +124,41 @@ Se o projeto for movido para um diretório diferente:
 
 - Cada funcionalidade tem seus próprios arquivos HTML, CSS e JS em `features/`.
 - O Bootstrap é carregado globalmente, então pode ser usado em qualquer arquivo.
-- Para adicionar novas páginas, crie uma nova pasta em `features/` com os três arquivos e atualize a navegação em `index.html`.
-- As páginas de autenticação (login, register, forgot-password) não aparecem no menu principal.
-- Autenticação simulada com localStorage (substitua por backend real).
+- Para adicionar novas páginas:
+  1. Crie uma nova pasta em `features/pages/` ou `features/authentication/`
+  2. Adicione os três arquivos: `nome.html`, `nome.css`, `nome.js`
+- Mensagens personalizadas para cada usuário
+
+✅ **Validação de Formulários**
+- Validação em tempo real adaptada ao tema escuro
+- Feedback visual com cores adequadas (verde/vermelho suaves)
+- Mensagens de erro descritivas
+- Prevenção de envio com dados inválidos
+
+✅ **Interface Responsiva e Elegante**
+- Design adaptável para diferentes tamanhos de tela
+- Navegação com gradiente e efeitos hover sofisticados
+- Tipografia otimizada para leitura de textos filosóficos
+- Animações suaves e discretas
+
+✅ **Páginas Temáticas**
+- **Home**: Apresentação do acervo com citação filosófica e categorias
+- **Sobre**: Informações sobre áreas do conhecimento e pensadores
+- **Contato**: Formulário para comunicação com tema filosófico
+- **404**: Página de erro elegante e consistente com o temascritivas
+- Prevenção de envio com dados inválidos
+
+✅ **Interface Responsiva**
+- Design adaptável para diferentes tamanhos de tela
+- Uso do Bootstrap 5 para componentes
+- Navegação intuitiva
+- Animações suaves
+
+✅ **Páginas Funcionais**
+- Home (com mensagem personalizada)
+- Sobre (informações do projeto)
+- Contato (formulário funcional)
+- 404 (página de erro)
 
 ## Requisitos
 

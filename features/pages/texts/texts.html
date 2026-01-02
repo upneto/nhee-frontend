@@ -1,0 +1,154 @@
+<div class="container mt-5">
+    <h1>Textos e Reflexões</h1>
+    <p class="lead" style="color: #b8935e; text-align: center; margin-bottom: 40px;">
+        Explore reflexões científicas e acadêmicas compartilhadas pela comunidade
+    </p>
+    
+    <div id="authWarning" class="alert" style="background-color: #2d1a1a; border-color: #d4af37; color: #f5d76e; border-left: 4px solid #d4af37; display: none; margin-bottom: 30px;">
+        <strong>Atenção:</strong> Para adicionar novos textos, dúvidas ou comentários, você precisa <a href="#login" style="color: #d4af37; text-decoration: underline;">fazer login</a>.
+    </div>
+    
+    <!-- Botão Novo Texto (apenas para usuários logados) -->
+    <div class="mb-4 text-end" id="newTextContainer" style="display: none;">
+        <button class="btn btn-primary" id="btnNewText" onclick="handleNewText()">
+            + Novo Texto
+        </button>
+    </div>
+    
+    <!-- Filtros e Busca -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <input type="text" class="form-control" id="searchTexts" placeholder="Buscar textos por título, autor ou conceitos...">
+        </div>
+    </div>
+
+    <!-- Filtros Avançados -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label for="filterArea" class="form-label" style="color: #b8935e; font-size: 14px; margin-bottom: 8px;">Área do Conhecimento</label>
+            <select class="form-control" id="filterArea">
+                <option value="">Todas as áreas</option>
+                <option value="metafisica">Metafísica</option>
+                <option value="epistemologia">Epistemologia</option>
+                <option value="etica">Ética</option>
+                <option value="estetica">Estética</option>
+                <option value="logica">Lógica</option>
+                <option value="filosofia-politica">Filosofia Política</option>
+                <option value="filosofia-linguagem">Filosofia da Linguagem</option>
+                <option value="filosofia-ciencia">Filosofia da Ciência</option>
+                <option value="fenomenologia">Fenomenologia</option>
+                <option value="existencialismo">Existencialismo</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="filterType" class="form-label" style="color: #b8935e; font-size: 14px; margin-bottom: 8px;">Tipo de Texto</label>
+            <select class="form-control" id="filterType">
+                <option value="">Todos os tipos</option>
+                <option value="ensaio">Ensaio</option>
+                <option value="artigo">Artigo</option>
+                <option value="opiniao">Opinião</option>
+                <option value="divulgacao">Divulgação</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="filterConcepts" class="form-label" style="color: #b8935e; font-size: 14px; margin-bottom: 8px;">Filtrar por Conceito</label>
+            <input type="text" class="form-control" id="filterConcepts" placeholder="Digite um conceito...">
+        </div>
+    </div>
+
+    <!-- Botão Limpar Filtros -->
+    <div class="mb-4 text-end">
+        <button class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040;" onclick="clearFilters()">
+            ✖ Limpar Filtros
+        </button>
+    </div>
+    
+    <!-- Tags/Conceitos -->
+    <div class="mb-4">
+        <h5 style="color: #d4af37; margin-bottom: 15px;">Conceitos Mais Comentados</h5>
+        <div id="conceptTags">
+            <span class="badge" style="background-color: #2d2d2d; color: #d4af37; margin: 5px; padding: 8px 15px; cursor: pointer;">Metafísica</span>
+            <span class="badge" style="background-color: #2d2d2d; color: #d4af37; margin: 5px; padding: 8px 15px; cursor: pointer;">Ética</span>
+            <span class="badge" style="background-color: #2d2d2d; color: #d4af37; margin: 5px; padding: 8px 15px; cursor: pointer;">Epistemologia</span>
+            <span class="badge" style="background-color: #2d2d2d; color: #d4af37; margin: 5px; padding: 8px 15px; cursor: pointer;">Consciência</span>
+            <span class="badge" style="background-color: #2d2d2d; color: #d4af37; margin: 5px; padding: 8px 15px; cursor: pointer;">Liberdade</span>
+        </div>
+    </div>
+    
+    <div class="section-divider" style="margin: 40px 0;"></div>
+    
+    <!-- Lista de Textos -->
+    <div id="textsList">
+        <!-- Exemplo de Texto 1 -->
+        <div class="text-card" style="background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%); padding: 30px; margin-bottom: 25px; border-radius: 4px; border: 1px solid #2d2d2d;">
+            <h3 style="color: #d4af37; margin-bottom: 15px;">Sobre a Natureza do Tempo</h3>
+            <p style="color: #999; font-size: 14px; margin-bottom: 15px;">
+                <span style="color: #b8935e;">Por: Filosofante123</span> | 
+                <span>28 de Dezembro, 2025</span> | 
+                <span style="color: #d4af37;">12 dúvidas</span> |
+                <span class="authenticity-badge-list" style="color: #b8935e; font-size: 12px; display: inline-block;">
+                    Autenticidade: <strong style="color: #d4af37; font-size: 13px;">8.5</strong>/10
+                </span>
+            </p>
+            <p style="color: #cccccc; line-height: 1.8; margin-bottom: 20px;">
+                O tempo não é uma entidade externa que flui independentemente de nossa experiência. 
+                Ele emerge da relação entre consciência e mudança, sendo inseparável do ato de perceber...
+            </p>
+            <div style="margin-bottom: 15px;">
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Tempo</span>
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Consciência</span>
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Metafísica</span>
+            </div>
+            <a href="#text-view" class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040; text-decoration: none;">Ler Texto Completo</a>
+            <a href="#text-view" class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040; text-decoration: none;">Ver Dúvidas/Críticas (12)</a>
+        </div>
+        
+        <!-- Exemplo de Texto 2 -->
+        <div class="text-card" style="background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%); padding: 30px; margin-bottom: 25px; border-radius: 4px; border: 1px solid #2d2d2d;">
+            <h3 style="color: #d4af37; margin-bottom: 15px;">A Responsabilidade Moral em Tempos de Incerteza</h3>
+            <p style="color: #999; font-size: 14px; margin-bottom: 15px;">
+                <span style="color: #b8935e;">Por: EticaContemporanea</span> | 
+                <span>25 de Dezembro, 2025</span> | 
+                <span style="color: #d4af37;">8 dúvidas</span> |
+                <span class="authenticity-badge-list" style="color: #b8935e; font-size: 12px; display: inline-block;">
+                    Autenticidade: <strong style="color: #d4af37; font-size: 13px;">7.2</strong>/10
+                </span>
+            </p>
+            <p style="color: #cccccc; line-height: 1.8; margin-bottom: 20px;">
+                Em uma era de informação fragmentada e múltiplas verdades concorrentes, 
+                como podemos fundamentar nossas escolhas morais? A responsabilidade ética...
+            </p>
+            <div style="margin-bottom: 15px;">
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Ética</span>
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Responsabilidade</span>
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Contemporaneidade</span>
+            </div>
+            <a href="#text-view" class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040; text-decoration: none;">Ler Texto Completo</a>
+            <a href="#text-view" class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040; text-decoration: none;">Ver Dúvidas/Críticas (8)</a>
+        </div>
+        
+        <!-- Exemplo de Texto 3 -->
+        <div class="text-card" style="background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%); padding: 30px; margin-bottom: 25px; border-radius: 4px; border: 1px solid #2d2d2d;">
+            <h3 style="color: #d4af37; margin-bottom: 15px;">Conhecimento e Crença: Uma Distinção Necessária?</h3>
+            <p style="color: #999; font-size: 14px; margin-bottom: 15px;">
+                <span style="color: #b8935e;">Por: Epistemologia_BR</span> | 
+                <span>20 de Dezembro, 2025</span> | 
+                <span style="color: #d4af37;">15 dúvidas</span> |
+                <span class="authenticity-badge-list" style="color: #b8935e; font-size: 12px; display: inline-block;">
+                    Autenticidade: <strong style="color: #d4af37; font-size: 13px;">9.1</strong>/10
+                </span>
+            </p>
+            <p style="color: #cccccc; line-height: 1.8; margin-bottom: 20px;">
+                A fronteira entre conhecimento e crença tem sido debatida desde Platão. 
+                Mas será que essa distinção ainda faz sentido em um contexto onde a justificação...
+            </p>
+            <div style="margin-bottom: 15px;">
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Epistemologia</span>
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Conhecimento</span>
+                <span class="badge" style="background-color: #0d0d0d; color: #b8935e; margin-right: 8px; padding: 5px 12px; border: 1px solid #2d2d2d;">Verdade</span>
+            </div>
+            <a href="#text-view" class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040; text-decoration: none;">Ler Texto Completo</a>
+            <a href="#text-view" class="btn btn-sm" style="background-color: #2d2d2d; color: #d4af37; border: 1px solid #404040; text-decoration: none;">Ver Dúvidas/Críticas (15)</a>
+        </div>
+    </div>
+</div>

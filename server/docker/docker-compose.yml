@@ -7,6 +7,5 @@ services:
       - "8080:80"
     volumes:
       - ../..:/usr/share/nginx/html
-      - ../nginx  # Exclude local nginx from volume
     environment:
       - NGINX_PORT=80

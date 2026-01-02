@@ -1,0 +1,145 @@
+<div class="container mt-5">
+    <div class="page-header">
+        <h1>Meus Textos</h1>
+        <p class="lead">Gerencie suas publicações científicas</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Estatísticas Rápidas -->
+    <div class="quick-stats mb-5">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalTexts">12</div>
+                        <div class="stat-label">Total de Textos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="avgAuthenticity">8.3</div>
+                        <div class="stat-label">Autenticidade Média</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalQuestions">87</div>
+                        <div class="stat-label">Dúvidas Recebidas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Novo Texto -->
+    <div class="mb-4 text-end">
+        <a href="#new-text" class="btn btn-primary">
+            + Novo Texto
+        </a>
+    </div>
+
+    <!-- Lista de Textos -->
+    <div id="myTextsList">
+        <!-- Texto 1 -->
+        <div class="my-text-card" data-text-id="1">
+            <div class="text-header-row">
+                <div class="text-info">
+                    <h3 class="text-title">Sobre a Natureza do Tempo</h3>
+                    <div class="text-meta">
+                        <span class="meta-item">📅 28 de Dezembro, 2025</span>
+                        <span class="meta-item">📁 Metafísica</span>
+                        <span class="meta-item">💬 12 Dúvidas</span>
+                        <span class="meta-item auth-badge">⭐ 8.5/10</span>
+                    </div>
+                </div>
+                <div class="text-actions">
+                    <a href="#text-view" class="btn btn-sm btn-view">Visualizar</a>
+                    <button class="btn btn-sm btn-edit" onclick="editText(1)">Editar</button>
+                    <button class="btn btn-sm btn-delete" onclick="deleteText(1)">Excluir</button>
+                </div>
+            </div>
+            <div class="text-excerpt">
+                O tempo não é uma entidade externa que flui independentemente de nossa experiência. 
+                Ele emerge da relação entre consciência e mudança...
+            </div>
+            <div class="text-tags">
+                <span class="tag">Tempo</span>
+                <span class="tag">Consciência</span>
+                <span class="tag">Metafísica</span>
+            </div>
+        </div>
+
+        <!-- Texto 2 -->
+        <div class="my-text-card" data-text-id="2">
+            <div class="text-header-row">
+                <div class="text-info">
+                    <h3 class="text-title">Epistemologia e Justificação</h3>
+                    <div class="text-meta">
+                        <span class="meta-item">📅 15 de Dezembro, 2025</span>
+                        <span class="meta-item">📁 Epistemologia</span>
+                        <span class="meta-item">💬 8 Dúvidas</span>
+                        <span class="meta-item auth-badge">⭐ 9.1/10</span>
+                    </div>
+                </div>
+                <div class="text-actions">
+                    <a href="#text-view" class="btn btn-sm btn-view">Visualizar</a>
+                    <button class="btn btn-sm btn-edit" onclick="editText(2)">Editar</button>
+                    <button class="btn btn-sm btn-delete" onclick="deleteText(2)">Excluir</button>
+                </div>
+            </div>
+            <div class="text-excerpt">
+                A justificação epistêmica não pode ser reduzida a mera crença verdadeira. 
+                É necessário compreender os fundamentos que tornam uma crença justificada...
+            </div>
+            <div class="text-tags">
+                <span class="tag">Epistemologia</span>
+                <span class="tag">Conhecimento</span>
+                <span class="tag">Justificação</span>
+            </div>
+        </div>
+
+        <!-- Texto 3 -->
+        <div class="my-text-card" data-text-id="3">
+            <div class="text-header-row">
+                <div class="text-info">
+                    <h3 class="text-title">Ética das Virtudes em Aristóteles</h3>
+                    <div class="text-meta">
+                        <span class="meta-item">📅 01 de Dezembro, 2025</span>
+                        <span class="meta-item">📁 Ética</span>
+                        <span class="meta-item">💬 15 Dúvidas</span>
+                        <span class="meta-item auth-badge">⭐ 7.8/10</span>
+                    </div>
+                </div>
+                <div class="text-actions">
+                    <a href="#text-view" class="btn btn-sm btn-view">Visualizar</a>
+                    <button class="btn btn-sm btn-edit" onclick="editText(3)">Editar</button>
+                    <button class="btn btn-sm btn-delete" onclick="deleteText(3)">Excluir</button>
+                </div>
+            </div>
+            <div class="text-excerpt">
+                A ética aristotélica centra-se no conceito de virtude como meio-termo. 
+                A eudaimonia, traduzida como felicidade ou florescimento humano...
+            </div>
+            <div class="text-tags">
+                <span class="tag">Ética</span>
+                <span class="tag">Aristóteles</span>
+                <span class="tag">Virtude</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensagem se não houver textos -->
+    <div id="noTextsMessage" style="display: none;" class="no-texts-box">
+        <h3>📝 Você ainda não publicou nenhum texto</h3>
+        <p>Compartilhe suas reflexões científicas com a comunidade!</p>
+        <a href="#new-text" class="btn btn-primary btn-lg mt-3">Criar Primeiro Texto</a>
+    </div>
+</div>

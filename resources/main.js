@@ -23,12 +23,19 @@ function hideLoading() {
 }
 
 function loadPage(page) {
-    // Verificar autenticação para páginas protegidas
+    // Verificar autenticação apenas para páginas que requerem interação
     const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
     console.log('Loading page:', page, 'isLoggedIn:', isLoggedIn);
     
-    if (!['login', 'register', 'forgot-password'].includes(page) && !isLoggedIn) {
-        console.log('Redirecting to login');
+    // Páginas públicas (não requerem autenticação)
+    const publicPages = ['login', 'register', 'forgot-password', 'home', 'about', 'contact', 'texts', 'text-view', '404'];
+    
+    // Páginas que requerem autenticação
+    const authRequiredPages = ['new-text', 'add-question'];
+    
+    // Se não está logado e tenta acessar página restrita, redireciona para login
+    if (!publicPages.includes(page) && !isLoggedIn) {
+        console.log('Redirecting to login - restricted page');
         window.location.hash = 'login';
         return;
     }
@@ -85,8 +92,11 @@ function loadPage(page) {
                 nav.style.display = 'none';
                 footer.style.display = 'none';
             } else {
-                nav.style.display = 'block';
+                nav.style.display = 'flex';
                 footer.style.display = 'block';
+                
+                // Atualizar links de login/logout no menu
+                updateMenuAuthLinks();
             }
             
             hideLoading();
@@ -110,9 +120,30 @@ window.addEventListener('hashchange', () => {
     loadPage(page);
 });
 
-// Verifica autenticacao a partir do localStorage no carregamento da pagina
-const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
-loadPage(isLoggedIn ? 'home' : 'login');
+// Carrega página inicial (sempre home, autenticação não é mais obrigatória)
+const currentHash = location.hash.substring(1) || 'home';
+loadPage(currentHash);
+
+// Atualizar links de autenticação no menu
+function updateMenuAuthLinks() {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    const loginLink = document.getElementById('loginLink');
+    const logoutLink = document.getElementById('logoutLink');
+    const myReflectionsDropdown = document.getElementById('myReflectionsDropdown');
+    
+    if (isLoggedIn) {
+        if (loginLink) loginLink.style.display = 'none';
+        if (logoutLink) logoutLink.style.display = 'inline';
+        if (myReflectionsDropdown) myReflectionsDropdown.style.display = 'block';
+    } else {
+        if (loginLink) loginLink.style.display = 'inline';
+        if (logoutLink) logoutLink.style.display = 'none';
+        if (myReflectionsDropdown) myReflectionsDropdown.style.display = 'none';
+    }
+}
+
+// Atualizar no carregamento
+updateMenuAuthLinks();
 
 /*
 * -----------------------------------------------------------------
@@ -121,15 +152,31 @@ loadPage(isLoggedIn ? 'home' : 'login');
 */
 
 /**
- * Funcao de Logout
+ * Event listener global para cliques
  */
 document.addEventListener('click', function(e) {
+    // Controle do dropdown - Minhas Reflexões
+    const dropdown = document.getElementById('myReflectionsDropdown');
+    if (dropdown) {
+        const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+        
+        // Se clicou no toggle, alterna o dropdown
+        if (dropdownToggle && (e.target === dropdownToggle || dropdownToggle.contains(e.target))) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+        } 
+        // Se clicou fora do dropdown, fecha
+        else if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    }
+    
+    // Funcao de Logout
     if (e.target.id === 'logoutLink') {
         e.preventDefault();
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('username');
-        nav.style.display = 'none';
-        footer.style.display = 'none';
-        window.location.hash = 'login';
+        updateMenuAuthLinks();
+        window.location.hash = 'home';
     }
 });

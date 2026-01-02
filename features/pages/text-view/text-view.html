@@ -1,0 +1,244 @@
+<div class="container mt-5">
+    <!-- Cabeçalho do Texto -->
+    <div class="text-header">
+        <h1 id="textTitle">Sobre a Natureza do Tempo</h1>
+        <div class="text-meta">
+            <span class="author">Por: <strong id="textAuthor">Filosofante123</strong></span>
+            <span class="separator">|</span>
+            <span class="date" id="textDate">28 de Dezembro, 2025</span>
+            <span class="separator">|</span>
+            <span class="questions-count" id="questionsCount">12 Dúvidas/Comentários</span>
+            <span class="separator">|</span>
+            <a href="#" class="authenticity-link" onclick="openAuthenticityModal(); return false;">
+                <span class="authenticity-badge" id="authenticityBadge">Autenticidade: <strong id="authenticityScore">8.5</strong>/10</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Tags/Conceitos -->
+    <div class="text-tags mb-4">
+        <span class="badge tag" onclick="filterByConcept('Tempo')">Tempo</span>
+        <span class="badge tag" onclick="filterByConcept('Consciência')">Consciência</span>
+        <span class="badge tag" onclick="filterByConcept('Metafísica')">Metafísica</span>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Conteúdo do Texto -->
+    <div class="text-content">
+        <p>
+            O tempo não é uma entidade externa que flui independentemente de nossa experiência. 
+            Ele emerge da relação entre consciência e mudança, sendo inseparável do ato de perceber. 
+            Quando dizemos que o tempo "passa", estamos, na verdade, descrevendo nossa própria experiência 
+            de continuidade e transformação.
+        </p>
+        <p>
+            Santo Agostinho, em suas Confissões, já apontava para esse paradoxo: sabemos o que é o tempo 
+            quando não nos perguntam, mas quando tentamos explicá-lo, não encontramos palavras adequadas. 
+            Isso sugere que o tempo é mais uma estrutura da consciência do que um objeto do mundo externo.
+        </p>
+        <p>
+            A física moderna, com Einstein, nos mostrou que o tempo é relativo ao observador e à velocidade. 
+            Isso não contradiz a perspectiva filosófica, mas a complementa: o tempo é inseparável da 
+            perspectiva de quem o experimenta. Não existe um "tempo absoluto" fluindo uniformemente 
+            em algum lugar do universo.
+        </p>
+        <p>
+            Portanto, a pergunta "o que é o tempo?" talvez esteja mal formulada. Deveríamos perguntar: 
+            "como experienciamos a temporalidade?" e "que estruturas da consciência tornam possível 
+            essa experiência?". Bergson chamou isso de "duração", distinguindo-a do tempo medido pelos 
+            relógios - o tempo vivido versus o tempo calculado.
+        </p>
+    </div>
+
+    <div class="section-divider mt-5"></div>
+
+    <!-- Seção de Dúvidas -->
+    <div class="questions-section mt-5">
+        <h3 style="color: #d4af37; margin-bottom: 25px;">Dúvidas/Críticas (12)</h3>
+        
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">#1</span>
+                <span class="question-author">Por: ReflexaoFilosofica</span>
+                <span class="question-type-badge badge-duvida">Dúvida Filosófica</span>
+            </div>
+            <p class="question-text">
+                Se o tempo é inseparável da consciência, como explicar fenômenos temporais 
+                que ocorreram antes do surgimento da consciência no universo?
+            </p>
+            <div class="question-footer">
+                <div class="question-actions">
+                    <a href="#text-view" class="btn btn-sm btn-response">Resposta</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">#2</span>
+                <span class="question-author">Por: TempoRelativo</span>
+                <span class="question-type-badge badge-comentario">Comentário Crítico</span>
+            </div>
+            <p class="question-text">
+                A distinção entre tempo vivido (duração) e tempo medido não seria apenas 
+                uma diferença entre aspectos subjetivos e objetivos do mesmo fenômeno?
+            </p>
+            <div class="question-footer">
+                <div class="question-actions">
+                    <a href="#text-view" class="btn btn-sm btn-response">Resposta</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">#3</span>
+                <span class="question-author">Por: Epistemologia_BR</span>
+                <span class="question-type-badge badge-complemento">Complemento ao Argumento</span>
+            </div>
+            <p class="question-text">
+                Como a neurociência contemporânea pode contribuir para essa discussão filosófica 
+                sobre a natureza do tempo?
+            </p>
+            <div class="question-footer">
+                <div class="question-actions">
+                    <a href="#text-view" class="btn btn-sm btn-response">Resposta</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" id="btnAddQuestion" onclick="handleAddQuestion()" style="display: none;">
+                + Adicionar Nova Dúvida/Comentário
+            </button>
+        </div>
+    </div>
+
+    <!-- Botões de Navegação -->
+    <div class="text-center mt-5 mb-5">
+        <a href="#texts" class="btn btn-secondary">← Voltar para Textos</a>
+    </div>
+</div>
+
+<!-- Modal de Autenticidade -->
+<div id="authenticityModal" class="modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeAuthenticityModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Autenticidade do Texto</h3>
+            <button class="modal-close" onclick="closeAuthenticityModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- Nota de Autenticidade -->
+            <div class="authenticity-score-section">
+                <div class="score-display">
+                    <div class="score-number" id="modalAuthScore">8.5</div>
+                    <div class="score-label">/ 10</div>
+                </div>
+                <div class="score-description" id="scoreDescription">
+                    <strong>Texto com boa fundamentação</strong>
+                </div>
+            </div>
+
+            <div class="section-divider" style="margin: 25px 0;"></div>
+
+            <!-- Metadados do Texto -->
+            <div class="authenticity-section">
+                <h5>📝 Metadados do Texto</h5>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Área do Conhecimento:</span>
+                        <span class="info-value" id="metaCategory">Metafísica</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tipo de Texto:</span>
+                        <span class="info-value" id="metaType">Ensaio</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Objetivo:</span>
+                        <span class="info-value" id="metaObjective">Argumentar</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Grau de Fundamentação:</span>
+                        <span class="info-value" id="metaFoundation">Fundamentado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider" style="margin: 25px 0;"></div>
+
+            <!-- Critérios de Autenticidade -->
+            <div class="authenticity-section">
+                <h5>✔️ Critérios de Autenticidade</h5>
+                <div class="criteria-list">
+                    <div class="criteria-item" id="criteriaAuthor">
+                        <span class="criteria-icon">✓</span>
+                        <span class="criteria-text">Autor declarado</span>
+                    </div>
+                    <div class="criteria-item" id="criteriaInstitution">
+                        <span class="criteria-icon">✓</span>
+                        <span class="criteria-text">Vínculo institucional: <strong id="institutionName">Universidade de São Paulo</strong></span>
+                    </div>
+                    <div class="criteria-item" id="criteriaSources">
+                        <span class="criteria-icon">✓</span>
+                        <span class="criteria-text">Fontes verificáveis (<span id="sourcesCount">3</span>)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fontes -->
+            <div class="authenticity-section" id="sourcesSection">
+                <h5>📖 Fontes Utilizadas</h5>
+                <div class="sources-list" id="sourcesList">
+                    <div class="source-item">1. Santo Agostinho - Confissões, Livro XI</div>
+                    <div class="source-item">2. Henri Bergson - Ensaio sobre os Dados Imediatos da Consciência</div>
+                    <div class="source-item">3. Albert Einstein - Teoria da Relatividade Especial</div>
+                </div>
+            </div>
+
+            <div class="section-divider" style="margin: 25px 0;"></div>
+
+            <!-- Avaliação da Comunidade -->
+            <div class="authenticity-section">
+                <h5>⭐ Avaliação da Comunidade</h5>
+                
+                <!-- Mensagem para usuários não logados -->
+                <div id="ratingLoginMessage" style="display: none;">
+                    <p style="color: #b8935e; text-align: center; padding: 20px; background-color: #2d2d2d; border-radius: 5px; border: 1px solid #404040;">
+                        🔒 Você precisa <a href="#login" style="color: #d4af37; text-decoration: underline;" onclick="closeAuthenticityModal()">fazer login</a> para avaliar este texto.
+                    </p>
+                </div>
+                
+                <!-- Formulário de avaliação (apenas para logados) -->
+                <div id="ratingFormContainer" style="display: none;">
+                    <p class="community-info">Avalie a autenticidade deste texto:</p>
+                    <div class="rating-input">
+                        <label for="userRating">Sua nota (1-10):</label>
+                        <div class="rating-controls">
+                            <input type="range" id="userRating" min="1" max="10" value="8" step="0.5">
+                            <span class="rating-value" id="ratingValue">8.0</span>
+                        </div>
+                    </div>
+                    <div class="rating-comment mt-3">
+                        <label for="ratingComment">Justifique sua avaliação: <span style="color: #d4af37;">*</span></label>
+                        <textarea id="ratingComment" class="form-control" rows="4" placeholder="Explique os motivos da sua avaliação..." style="background-color: #0d0d0d; color: #e8e8e8; border: 1px solid #404040; resize: vertical;"></textarea>
+                        <small class="form-text" style="color: #999;">Mínimo de 20 caracteres</small>
+                        <div class="invalid-feedback" id="commentError" style="display: none; color: #ff6b6b; margin-top: 5px;">
+                            Por favor, justifique sua avaliação com pelo menos 20 caracteres.
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="submitRating()">Enviar Avaliação</button>
+                </div>
+                
+                <!-- Estatísticas da comunidade (sempre visível) -->
+                <div class="community-stats mt-3">
+                    <small style="color: #b8935e;">
+                        <span id="ratingsCount">24</span> avaliações da comunidade | 
+                        Média: <strong id="communityAverage">8.2</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

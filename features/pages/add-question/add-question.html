@@ -1,0 +1,82 @@
+<div class="container mt-5">
+    <div class="page-header">
+        <h1>Nova Dúvida/Comentário</h1>
+        <p class="lead">Adicione sua contribuição ao debate filosófico</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <form id="addQuestionForm" novalidate>
+        <!-- Título da Dúvida -->
+        <div class="mb-4">
+            <label for="questionTitle" class="form-label">Título da Dúvida/Comentário</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="questionTitle" 
+                required 
+                minlength="10"
+                maxlength="150"
+                placeholder="Ex: Como conciliar tempo subjetivo e tempo objetivo?"
+            >
+            <div class="invalid-feedback">O título deve ter entre 10 e 150 caracteres.</div>
+            <small class="form-text">Seja claro e específico no título da sua dúvida.</small>
+        </div>
+
+        <!-- Conteúdo da Dúvida -->
+        <div class="mb-4">
+            <label for="questionContent" class="form-label">Descrição Detalhada</label>
+            <textarea 
+                class="form-control text-editor" 
+                id="questionContent" 
+                rows="10" 
+                required
+                minlength="50"
+                placeholder="Descreva sua dúvida ou comentário de forma detalhada...&#10;&#10;Explique o contexto, apresente seus questionamentos e indique os pontos específicos que gostaria de discutir."
+            ></textarea>
+            <div class="invalid-feedback">A descrição deve ter no mínimo 50 caracteres.</div>
+            <small class="form-text">
+                <span id="questionCharCount">0</span> caracteres | 
+                Recomendamos entre 100 e 1000 caracteres para uma boa dúvida.
+            </small>
+        </div>
+
+        <!-- Tipo de Contribuição -->
+        <div class="mb-4">
+            <label for="contributionType" class="form-label">Tipo de Contribuição</label>
+            <select class="form-control" id="contributionType" required>
+                <option value="">Selecione o tipo...</option>
+                <option value="duvida">Dúvida Filosófica</option>
+                <option value="comentario">Comentário Crítico</option>
+                <option value="contraponto">Contraponto Argumentativo</option>
+                <option value="complemento">Complemento ao Argumento</option>
+            </select>
+            <div class="invalid-feedback">Por favor, selecione o tipo de contribuição.</div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Informação -->
+        <div class="info-box mb-4">
+            <h5>📌 Sobre Dúvidas/Comentários</h5>
+            <p>Sua contribuição será pública e poderá receber respostas do autor do texto e de outros membros da comunidade. Mantenha o respeito e o foco no debate filosófico.</p>
+        </div>
+
+        <!-- Botões -->
+        <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary btn-lg">
+                Publicar Dúvida/Comentário
+            </button>
+            <a href="#text-view" class="btn btn-secondary btn-lg ms-3">
+                Cancelar
+            </a>
+        </div>
+    </form>
+
+    <!-- Mensagem de Sucesso (oculta inicialmente) -->
+    <div id="successMessage" class="success-box mt-4" style="display: none;">
+        <h4>✓ Dúvida/Comentário Publicado com Sucesso!</h4>
+        <p>Sua contribuição foi adicionada ao texto e já está disponível para discussão.</p>
+        <a href="#text-view" class="btn btn-primary">Voltar ao Texto</a>
+    </div>
+</div>

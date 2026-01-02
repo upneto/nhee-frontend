@@ -1,0 +1,201 @@
+<div class="container mt-5">
+    <div class="page-header">
+        <h1>Editar Texto</h1>
+        <p class="lead">Faça alterações em sua publicação científica</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <form id="editTextForm" novalidate>
+        <!-- Título -->
+        <div class="mb-4">
+            <label for="textTitle" class="form-label">Título da Reflexão</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="textTitle" 
+                required 
+                minlength="10"
+                maxlength="150"
+                placeholder="Ex: Sobre a Natureza do Tempo e da Consciência"
+            >
+            <div class="invalid-feedback">O título deve ter entre 10 e 150 caracteres.</div>
+            <small class="form-text">Escolha um título claro e descritivo para sua reflexão.</small>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="mb-4">
+            <label for="textContent" class="form-label">Conteúdo do Texto</label>
+            <textarea 
+                class="form-control text-editor" 
+                id="textContent" 
+                rows="15" 
+                required
+                minlength="200"
+                placeholder="Escreva sua reflexão científica aqui..."
+            ></textarea>
+            <div class="invalid-feedback">O texto deve ter no mínimo 200 caracteres.</div>
+            <small class="form-text">
+                <span id="charCount">0</span> caracteres | 
+                Recomendamos textos entre 500 e 3000 caracteres para leitura confortável.
+            </small>
+        </div>
+
+        <!-- Tags/Conceitos -->
+        <div class="mb-4">
+            <label for="textTags" class="form-label">Conceitos Relacionados</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="textTags" 
+                placeholder="Ex: Tempo, Consciência, Metafísica (separe por vírgula)"
+            >
+            <small class="form-text">Adicione de 2 a 5 conceitos que ajudem a categorizar seu texto.</small>
+        </div>
+
+        <!-- Categoria Principal -->
+        <div class="mb-4">
+            <label for="textCategory" class="form-label">Área do Conhecimento</label>
+            <select class="form-control" id="textCategory" required>
+                <option value="">Selecione uma área...</option>
+                <option value="metafisica">Metafísica</option>
+                <option value="epistemologia">Epistemologia</option>
+                <option value="etica">Ética</option>
+                <option value="estetica">Estética</option>
+                <option value="logica">Lógica</option>
+                <option value="filosofia-politica">Filosofia Política</option>
+                <option value="filosofia-linguagem">Filosofia da Linguagem</option>
+                <option value="filosofia-ciencia">Filosofia da Ciência</option>
+                <option value="fenomenologia">Fenomenologia</option>
+                <option value="existencialismo">Existencialismo</option>
+                <option value="outras">Outras</option>
+            </select>
+            <div class="invalid-feedback">Por favor, selecione uma área do conhecimento.</div>
+        </div>
+
+        <!-- Campo para Área Customizada (exibido quando "Outras" é selecionado) -->
+        <div class="mb-4" id="customCategoryContainer" style="display: none;">
+            <label for="customCategory" class="form-label">Especifique a Área do Conhecimento</label>
+            <input type="text" class="form-control" id="customCategory" placeholder="Digite a área do conhecimento...">
+            <div class="invalid-feedback">Por favor, especifique a área do conhecimento.</div>
+        </div>
+
+        <!-- Tipo de Texto -->
+        <div class="mb-4">
+            <label for="textType" class="form-label">Tipo de Texto <span style="color: #999;">(opcional)</span></label>
+            <select class="form-control" id="textType">
+                <option value="">Selecione o tipo...</option>
+                <option value="ensaio">Ensaio</option>
+                <option value="artigo">Artigo</option>
+                <option value="opiniao">Opinião</option>
+                <option value="divulgacao">Divulgação</option>
+            </select>
+            <small class="form-text">Indique o formato do seu texto.</small>
+        </div>
+
+        <!-- Objetivo Declarado -->
+        <div class="mb-4">
+            <label for="textObjective" class="form-label">Objetivo Declarado <span style="color: #999;">(opcional)</span></label>
+            <select class="form-control" id="textObjective">
+                <option value="">Selecione o objetivo...</option>
+                <option value="informar">Informar</option>
+                <option value="argumentar">Argumentar</option>
+                <option value="especular">Especular</option>
+            </select>
+            <small class="form-text">Qual é o principal objetivo do seu texto?</small>
+        </div>
+
+        <!-- Grau de Fundamentação -->
+        <div class="mb-4">
+            <label for="foundationLevel" class="form-label">Grau de Fundamentação Pretendido <span style="color: #999;">(opcional)</span></label>
+            <select class="form-control" id="foundationLevel">
+                <option value="">Selecione o grau...</option>
+                <option value="exploratório">Exploratório - Reflexões iniciais sobre o tema</option>
+                <option value="fundamentado">Fundamentado - Argumentação com referências</option>
+                <option value="rigoroso">Rigoroso - Análise acadêmica aprofundada</option>
+            </select>
+            <small class="form-text">Indique o nível de profundidade e fundamentação do seu texto.</small>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Critérios de Autenticidade -->
+        <div class="mb-5">
+            <h4 class="mb-4">Critérios de Autenticidade</h4>
+            
+            <!-- Competência do Autor -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">O autor possui competência reconhecida para tratar do assunto?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="author" id="authIsAuthor">
+                    <label class="form-check-label" for="authIsAuthor">
+                        Sou o autor
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="institution" id="authInstitutional">
+                    <label class="form-check-label" for="authInstitutional">
+                        Tem vínculo institucional (universidade, editora, revista, organização)
+                    </label>
+                </div>
+                <!-- Campo para especificar instituição -->
+                <div class="mt-2" id="institutionContainer" style="display: none;">
+                    <input type="text" class="form-control" id="institutionName" placeholder="Especifique a instituição...">
+                </div>
+            </div>
+
+            <!-- Verificabilidade das Afirmações -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">As afirmações podem ser confirmadas de forma independente?</label>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="hasVerifiableClaims">
+                    <label class="form-check-label" for="hasVerifiableClaims">
+                        Sim, possuo fontes verificáveis
+                    </label>
+                </div>
+                
+                <!-- Container de Fontes -->
+                <div id="sourcesContainer" style="display: none;">
+                    <label class="form-label">Fontes e Referências</label>
+                    <div id="sourcesList">
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control source-input" placeholder="Digite a fonte (URL, livro, artigo, etc.)">
+                            <button class="btn btn-outline-danger" type="button" onclick="removeSource(this)" style="display: none;">
+                                <i class="bi bi-trash"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="addSource()">
+                        + Adicionar Outra Fonte
+                    </button>
+                    <small class="form-text d-block mt-2">Adicione links, livros, artigos ou outras referências que fundamentam seu texto.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Informação sobre Alterações -->
+        <div class="info-box mb-4">
+            <h5>📌 Sobre Alterações</h5>
+            <p>Ao salvar as alterações, seu texto será atualizado mantendo todas as dúvidas/comentários existentes. As avaliações de autenticidade permanecerão inalteradas.</p>
+        </div>
+
+        <!-- Botões -->
+        <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary btn-lg">
+                Salvar Alterações
+            </button>
+            <a href="#my-texts" class="btn btn-secondary btn-lg ms-3">
+                Cancelar
+            </a>
+        </div>
+    </form>
+
+    <!-- Mensagem de Sucesso (oculta inicialmente) -->
+    <div id="successMessage" class="success-box mt-4" style="display: none;">
+        <h4>✓ Texto Atualizado com Sucesso!</h4>
+        <p>Suas alterações foram salvas e já estão visíveis na plataforma.</p>
+        <a href="#my-texts" class="btn btn-primary">Voltar para Meus Textos</a>
+    </div>
+</div>

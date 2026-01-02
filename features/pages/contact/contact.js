@@ -48,6 +48,10 @@ if (contactForm) {
         contactForm.reset();
         inputs.forEach(input => {
             input.classList.remove('is-valid');
+            input.classList.remove('is-invalid');
+        });
+    });
+}
         });
     });
 }

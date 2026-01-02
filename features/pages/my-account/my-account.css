@@ -1,0 +1,252 @@
+/* My Account CSS */
+.container {
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    color: #d4af37;
+    font-size: 42px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.page-header .lead {
+    color: #b8935e;
+    font-size: 18px;
+}
+
+.section-title {
+    color: #d4af37;
+    font-size: 24px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d4af37;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 40px 0;
+}
+
+/* Form Styles */
+.form-label {
+    color: #b8935e;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    background-color: #0d0d0d;
+    color: #e8e8e8;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: #1a1a1a;
+    border-color: #d4af37;
+    color: #e8e8e8;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+    outline: none;
+}
+
+.form-control:disabled {
+    background-color: #1a1a1a;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.form-control::placeholder {
+    color: #666;
+}
+
+.form-text {
+    color: #999;
+    font-size: 13px;
+    display: block;
+    margin-top: 5px;
+}
+
+.invalid-feedback {
+    color: #e74c3c;
+    font-size: 13px;
+    display: none;
+    margin-top: 5px;
+}
+
+.form-control.is-invalid {
+    border-color: #e74c3c;
+}
+
+.form-control.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+/* Info Box */
+.info-box {
+    background-color: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid #d4af37;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.info-box p {
+    color: #b8935e;
+    margin: 0;
+}
+
+/* Stats Section */
+.stats-section {
+    margin: 40px 0;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    padding: 25px 20px;
+    border-radius: 8px;
+    border: 1px solid #2d2d2d;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #d4af37;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #b8935e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Success Message */
+.success-box {
+    background-color: rgba(46, 204, 113, 0.15);
+    border: 2px solid #2ecc71;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-box h4 {
+    color: #2ecc71;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: #b8935e;
+    margin: 0;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #d4af37, #b8935e);
+    color: #0d0d0d;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #f5d76e, #d4af37);
+}
+
+.btn-secondary {
+    background-color: #2d2d2d;
+    color: #d4af37;
+    border: 1px solid #404040;
+}
+
+.btn-secondary:hover {
+    background-color: #404040;
+    color: #f5f5f5;
+    border-color: #d4af37;
+}
+
+.btn-lg {
+    padding: 15px 40px;
+    font-size: 16px;
+}
+
+.ms-3 {
+    margin-left: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .ms-3 {
+        margin-left: 0;
+    }
+}
