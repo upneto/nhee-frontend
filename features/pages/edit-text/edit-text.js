@@ -1,8 +1,37 @@
 // Edit Text Page JS
 console.log('Edit Text page loaded');
 
+// Inicializar dados de domínio
+async function initializeDomainData() {
+    try {
+        // Carregar áreas de conhecimento
+        const knowledgeAreas = await window.DomainService.getKnowledgeAreas();
+        await window.DomainService.populateSelect('textCategory', knowledgeAreas, 'code', 'name', 'Selecione uma área');
+        
+        // Carregar tipos de texto
+        const textTypes = await window.DomainService.getTextTypes();
+        await window.DomainService.populateSelect('textType', textTypes, 'code', 'name', 'Selecione um tipo');
+        
+        // Carregar objetivos do texto
+        const textObjectives = await window.DomainService.getTextObjectives();
+        await window.DomainService.populateSelect('textObjective', textObjectives, 'code', 'name', 'Selecione um objetivo');
+        
+        // Carregar níveis de fundamentação
+        const foundationLevels = await window.DomainService.getFoundationLevels();
+        await window.DomainService.populateSelect('foundationLevel', foundationLevels, 'code', 'name', 'Selecione um nível');
+        
+        console.log('Domain data loaded successfully');
+    } catch (error) {
+        console.error('Error loading domain data:', error);
+        alert('Erro ao carregar dados do sistema. Por favor, tente novamente.');
+    }
+}
+
 // Carregar dados do texto a ser editado
-setTimeout(() => {
+setTimeout(async () => {
+    // Inicializar dados de domínio primeiro
+    await initializeDomainData();
+    
     const textId = localStorage.getItem('editingTextId');
     
     if (!textId) {
@@ -233,19 +262,18 @@ if (editForm) {
         
         // Coletar dados do formulário
         const formData = {
-            textId: localStorage.getItem('editingTextId'),
-            title: document.getElementById('textTitle').value,
-            content: document.getElementById('textContent').value,
-            tags: document.getElementById('textTags').value,
-            category: document.getElementById('textCategory').value,
-            customCategory: document.getElementById('customCategory').value,
-            type: document.getElementById('textType').value,
-            objective: document.getElementById('textObjective').value,
-            foundationLevel: document.getElementById('foundationLevel').value,
-            isAuthor: document.getElementById('authIsAuthor').checked,
-            hasInstitution: document.getElementById('authInstitutional').checked,
-            institutionName: document.getElementById('institutionName').value,
-            hasVerifiableClaims: document.getElementById('hasVerifiableClaims').checked,
+            id: localStorage.getItem('editingTextId'),
+            title: document.getElementById('textTitle').value.trim(),
+            content: document.getElementById('textContent').value.trim(),
+            tags: document.getElementById('textTags').value.trim().split(',').map(t => t.trim()).filter(t => t),
+            knowledge_area_code: document.getElementById('textCategory').value,
+            text_type_code: document.getElementById('textType').value,
+            text_objective_code: document.getElementById('textObjective').value,
+            foundation_level_code: document.getElementById('foundationLevel').value,
+            is_author: document.getElementById('authIsAuthor').checked,
+            has_institution: document.getElementById('authInstitutional').checked,
+            institution_name: document.getElementById('authInstitutional').checked ? document.getElementById('institutionName').value.trim() : null,
+            has_verifiable_claims: document.getElementById('hasVerifiableClaims').checked,
             sources: []
         };
         

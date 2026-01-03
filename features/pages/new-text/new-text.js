@@ -1,5 +1,34 @@
 // New Text Page JS
 
+let domainService = null;
+
+// Inicializar dados de domínio
+async function initializeDomainData() {
+    try {
+        domainService = window.DomainService;
+        
+        // Carregar áreas do conhecimento
+        const knowledgeAreas = await domainService.getKnowledgeAreas();
+        domainService.populateSelect('textCategory', knowledgeAreas, 'Selecione uma área...');
+        
+        // Carregar tipos de texto
+        const textTypes = await domainService.getTextTypes();
+        domainService.populateSelect('textType', textTypes, 'Selecione o tipo...');
+        
+        // Carregar objetivos
+        const textObjectives = await domainService.getTextObjectives();
+        domainService.populateSelect('textObjective', textObjectives, 'Selecione o objetivo...');
+        
+        // Carregar níveis de fundamentação
+        const foundationLevels = await domainService.getFoundationLevels();
+        domainService.populateSelect('foundationLevel', foundationLevels, 'Selecione o grau...');
+        
+    } catch (error) {
+        console.error('Erro ao carregar dados de domínio:', error);
+        alert('Erro ao carregar opções do formulário. Recarregue a página.');
+    }
+}
+
 const form = document.getElementById('newTextForm');
 const textContent = document.getElementById('textContent');
 const charCount = document.getElementById('charCount');
@@ -161,16 +190,6 @@ function submitText() {
         ? document.getElementById('customCategory').value.trim() 
         : categoryValue;
     
-    // Coletar metadados do texto
-    const textType = document.getElementById('textType').value;
-    const textObjective = document.getElementById('textObjective').value;
-    const foundationLevel = document.getElementById('foundationLevel').value;
-    
-    // Coletar critérios de autenticidade
-    const isAuthor = document.getElementById('authIsAuthor').checked;
-    const hasInstitution = document.getElementById('authInstitutional').checked;
-    const institutionName = hasInstitution ? document.getElementById('institutionName').value.trim() : '';
-    
     // Coletar fontes
     const hasVerifiable = document.getElementById('hasVerifiableClaims').checked;
     const sources = [];
@@ -185,45 +204,39 @@ function submitText() {
     const textData = {
         title: document.getElementById('textTitle').value.trim(),
         content: document.getElementById('textContent').value.trim(),
-        tags: document.getElementById('textTags').value.trim(),
-        category: finalCategory,
+        area: finalCategory,
+        type: document.getElementById('textType').value || null,
+        objective: document.getElementById('textObjective').value || null,
+        foundation_level: document.getElementById('foundationLevel').value || null,
         author: localStorage.getItem('username') || 'Anônimo',
-        date: new Date().toISOString(),
-        metadata: {
-            type: textType,
-            objective: textObjective,
-            foundationLevel: foundationLevel
-        },
-        authenticity: {
-            isAuthor: isAuthor,
-            hasInstitution: hasInstitution,
-            institution: institutionName,
-            hasVerifiableClaims: hasVerifiable,
-            sources: sources
-        }
+        institution: document.getElementById('authInstitutional').checked 
+            ? document.getElementById('institutionName').value.trim() 
+            : null,
+        references: sources.length > 0 ? sources.join('\n') : null
     };
     
     console.log('Dados do texto:', textData);
     
-    // TODO: Aqui será implementada a chamada ao backend
-    // Por enquanto, simular sucesso
-    
-    // Ocultar formulário e mostrar mensagem de sucesso
-    form.style.display = 'none';
-    successMessage.style.display = 'block';
-    
-    // Scroll para mensagem de sucesso
-    successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
-    // Limpar formulário
-    setTimeout(() => {
-        form.reset();
-        const inputs = form.querySelectorAll('.form-control');
-        inputs.forEach(input => {
-            input.classList.remove('is-invalid', 'is-valid');
+    // Enviar para o backend usando TextService
+    const textService = window.TextService;
+    textService.create(textData)
+        .then(result => {
+            // Ocultar formulário e mostrar mensagem de sucesso
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // Scroll para mensagem de sucesso
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Redirecionar após 2 segundos
+            setTimeout(() => {
+                window.location.hash = '#texts';
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Erro ao criar texto:', error);
+            alert('Erro ao publicar texto: ' + (error.message || 'Tente novamente.'));
         });
-        if (charCount) charCount.textContent = '0';
-    }, 100);
 }
 
 // Inicialização
@@ -234,5 +247,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isLoggedIn) {
         alert('Você precisa fazer login para criar um novo texto.');
         window.location.hash = 'login';
+    } else {
+        // Carregar dados de domínio
+        initializeDomainData();
     }
 });

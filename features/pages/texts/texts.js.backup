@@ -1,11 +1,15 @@
 // Texts Page JS
 console.log('Texts page loaded');
 
-// Estado para controle de paginação - usar var para permitir redeclaração
-var currentPage = 1;
-var isLoading = false;
-var hasMorePages = true;
-var currentFilters = {};
+// Estado para controle de paginação - usar objeto global para evitar redeclarações
+if (!window.textsPageState) {
+    window.textsPageState = {};
+}
+
+window.textsPageState.currentPage = 1;
+window.textsPageState.isLoading = false;
+window.textsPageState.hasMorePages = true;
+window.textsPageState.currentFilters = {};
 
 // Inicializar dados de domínio para filtros
 async function initializeDomainData() {
@@ -311,7 +315,13 @@ window.viewText = viewText;
 async function initTextsPage() {
     console.log('Initializing texts page...');
     
-    // Resetar estado
+    // Resetar estado global
+    window.textsPageState.currentPage = 1;
+    window.textsPageState.isLoading = false;
+    window.textsPageState.hasMorePages = true;
+    window.textsPageState.currentFilters = {};
+    
+    // Atualizar referências locais
     currentPage = 1;
     isLoading = false;
     hasMorePages = true;
@@ -360,25 +370,20 @@ async function initTextsPage() {
         console.log('Botão Novo Texto exibido');
     }
 
-    // Event listeners para Enter nos campos de texto
+    // Busca de textos
     const searchInput = document.getElementById('searchTexts');
-    const filterConcepts = document.getElementById('filterConcepts');
-    
     if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                applyFilters();
-            }
-        });
+        searchInput.addEventListener('input', applyFilters);
     }
-    
-    if (filterConcepts) {
-        filterConcepts.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                applyFilters();
-            }
-        });
-    }
+
+    // Event listeners para filtros
+    const filterArea = document.getElementById('filterArea');
+    const filterType = document.getElementById('filterType');
+    const filterConcepts = document.getElementById('filterConcepts');
+
+    if (filterArea) filterArea.addEventListener('change', applyFilters);
+    if (filterType) filterType.addEventListener('change', applyFilters);
+    if (filterConcepts) filterConcepts.addEventListener('input', applyFilters);
 
     // Clique em tags/conceitos
     const conceptTags = document.querySelectorAll('#conceptTags .badge');

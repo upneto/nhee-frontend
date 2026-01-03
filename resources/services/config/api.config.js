@@ -6,7 +6,7 @@
 const ApiConfig = {
     // URL base do backend - Ajuste conforme seu ambiente
     baseURL: window.location.hostname === 'localhost' 
-        ? 'http://localhost:8080/api'  // Desenvolvimento
+        ? 'http://localhost:3000/api'  // Desenvolvimento (backend Node.js)
         : '/api',                       // Produção
     
     // Timeout padrão para requisições (em ms)
@@ -54,6 +54,13 @@ const ApiConfig = {
         },
         contact: {
             send: '/contact'
+        },
+        domains: {
+            knowledgeAreas: '/domains/knowledge-areas',
+            textTypes: '/domains/text-types',
+            textObjectives: '/domains/text-objectives',
+            foundationLevels: '/domains/foundation-levels',
+            questionTypes: '/domains/question-types'
         }
     },
     

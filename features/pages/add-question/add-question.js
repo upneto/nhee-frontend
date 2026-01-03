@@ -1,5 +1,22 @@
 // Add Question Page JS
 
+let domainService = null;
+
+// Inicializar dados de domínio
+async function initializeDomainData() {
+    try {
+        domainService = window.DomainService;
+        
+        // Carregar tipos de contribuição/dúvida
+        const questionTypes = await domainService.getQuestionTypes();
+        domainService.populateSelect('contributionType', questionTypes, 'Selecione o tipo...');
+        
+    } catch (error) {
+        console.error('Erro ao carregar dados de domínio:', error);
+        alert('Erro ao carregar opções do formulário. Recarregue a página.');
+    }
+}
+
 const form = document.getElementById('addQuestionForm');
 const questionContent = document.getElementById('questionContent');
 const charCount = document.getElementById('questionCharCount');
@@ -71,33 +88,39 @@ function submitQuestion() {
     const questionData = {
         title: document.getElementById('questionTitle').value.trim(),
         content: document.getElementById('questionContent').value.trim(),
-        type: document.getElementById('contributionType').value,
-        author: localStorage.getItem('username') || 'Anônimo',
-        date: new Date().toISOString(),
-        textId: getTextIdFromUrl() // Pegar ID do texto da URL
+        type: document.getElementById('contributionType').value
     };
     
     console.log('Dados da dúvida:', questionData);
     
-    // TODO: Aqui será implementada a chamada ao backend
-    // Por enquanto, simular sucesso
+    // Obter ID do texto da URL
+    const textId = getTextIdFromUrl();
     
-    // Ocultar formulário e mostrar mensagem de sucesso
-    form.style.display = 'none';
-    successMessage.style.display = 'block';
+    if (!textId) {
+        alert('Erro: ID do texto não encontrado.');
+        return;
+    }
     
-    // Scroll para mensagem de sucesso
-    successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
-    // Limpar formulário
-    setTimeout(() => {
-        form.reset();
-        const inputs = form.querySelectorAll('.form-control');
-        inputs.forEach(input => {
-            input.classList.remove('is-invalid', 'is-valid');
+    // Enviar para o backend usando QuestionService
+    const questionService = window.QuestionService;
+    questionService.create(textId, questionData)
+        .then(result => {
+            // Ocultar formulário e mostrar mensagem de sucesso
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // Scroll para mensagem de sucesso
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Redirecionar após 2 segundos
+            setTimeout(() => {
+                window.location.hash = `#text-view?id=${textId}`;
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Erro ao criar dúvida:', error);
+            alert('Erro ao publicar dúvida: ' + (error.message || 'Tente novamente.'));
         });
-        if (charCount) charCount.textContent = '0';
-    }, 100);
 }
 
 // Função para obter ID do texto da URL (se implementado com parâmetros)
@@ -115,5 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isLoggedIn) {
         alert('Você precisa fazer login para adicionar dúvidas ou comentários.');
         window.location.hash = 'login';
+    } else {
+        // Carregar dados de domínio
+        initializeDomainData();
     }
 });
